@@ -1,13 +1,17 @@
 "use client";
 
+import { logOut } from "@/api/api";
+import { useAuthStore } from "@/zustand/auth.store";
 import Link from "next/link";
 import React, { useState } from "react";
 
 function Header() {
-	const [isLoggedIn, setIsLoggedIn] = useState(true);
+	const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+
 	const handleClickLogOut = async () => {
-		await console.log("눌림");
+		logOut();
 	};
+
 	return (
 		<header className="border-b px-6 h-16  flex items-center justify-between">
 			<div className="flex gap-x-7">

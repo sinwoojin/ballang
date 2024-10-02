@@ -4,14 +4,13 @@ import React from "react";
 import Link from "next/link";
 import { Ballang } from "../../../../schemas/list.schema";
 
-async function BallangList() {
-	const products = await getProducts();
+async function BallangList({ brandId }: { brandId?: string }) {
+	const products = (await getProducts(brandId)) as Ballang[];
 
 	return (
 		<div className="">
-			<h1 className="font-bold text-center text-3xl my-6">Trending</h1>
-			<ul className="px-5 flex w-full flex-wrap gap-x-[2%]">
-				{products.map((product: Ballang) => (
+			<ul className="py-6 mx-auto max-w-screen-lg flex w-full flex-wrap gap-x-[2%] ">
+				{products?.map((product: Ballang) => (
 					<li key={product.id} className="w-[18%]">
 						<Link href={`/products/${product.id}`}>
 							<img src={product.imgSrc} />

@@ -1,12 +1,13 @@
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren, useEffect } from "react";
 import Header from "../_components/Header/Header";
+import AuthProvider from "@/providers/AuthProvider";
 
 function layout({ children }: PropsWithChildren) {
 	return (
-		<div>
+		<AuthProvider>
 			<Header />
 			{children}
-		</div>
+		</AuthProvider>
 	);
 }
 
