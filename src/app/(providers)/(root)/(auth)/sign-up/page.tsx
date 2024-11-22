@@ -1,15 +1,14 @@
 "use client";
 
-import { signUp } from "@/api/api";
 import { useAuthStore } from "@/zustand/auth.store";
-import React, { ComponentProps, useRef } from "react";
+import { ComponentProps, useRef } from "react";
 
-function SignUp() {
+function SignUpPage() {
 	const inputEmailRef = useRef<HTMLInputElement | null>(null);
 	const inputPasswordRef = useRef<HTMLInputElement | null>(null);
 	const passwordConfirmRef = useRef<HTMLInputElement | null>(null);
 
-	const setIsLoggedIn = useAuthStore((state) => state.setIsLoggedIn);
+	const logIn = useAuthStore((state) => state.logIn);
 
 	const handleClickSignUp: ComponentProps<"form">["onSubmit"] = (e) => {
 		e.preventDefault();
@@ -20,13 +19,8 @@ function SignUp() {
 		const passwordConfirm = passwordConfirmRef.current?.value;
 		if (password !== passwordConfirm)
 			return alert("비밀번호 일치하지 않음");
-		const data = {
-			email,
-			password,
-		};
 
-		signUp(data);
-		setIsLoggedIn(true);
+		logIn();
 		return alert("축하합니다 회원가입에 성공하셨습니다");
 	};
 	return (
@@ -65,4 +59,4 @@ function SignUp() {
 	);
 }
 
-export default SignUp;
+export default SignUpPage;

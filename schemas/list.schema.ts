@@ -15,3 +15,9 @@ export type Brand = {
 	nameKr: string;
 	nameEn: string;
 };
+
+export type Response<T> = {
+	success: boolean;
+	eroor: null | any;
+	result: T;
+};

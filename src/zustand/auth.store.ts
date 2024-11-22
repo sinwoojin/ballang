@@ -1,17 +1,19 @@
 import { create } from "zustand";
 
-type useAuthStoreType = {
-	isLoggedIn: boolean;
-	setIsLoggedIn: (isLoggedIn: boolean) => void;
+type AuthStoreState = {
+	isAuthInitialized: boolean;
+	initializeAuth: () => void;
 
-	initialized: boolean;
-	setInitialized: () => void;
+	isLoggedIn: boolean;
+	logIn: () => void;
+	logOut: () => void;
 };
 
-export const useAuthStore = create<useAuthStoreType>((set) => ({
-	isLoggedIn: false,
-	setIsLoggedIn: (isLoggedIn) => set({ isLoggedIn }),
+export const useAuthStore = create<AuthStoreState>((set) => ({
+	isAuthInitialized: false,
+	initializeAuth: () => set({ isAuthInitialized: true }),
 
-	initialized: false,
-	setInitialized: () => set({ initialized: true }),
+	isLoggedIn: false,
+	logIn: () => set({ isLoggedIn: true }),
+	logOut: () => set({ isLoggedIn: false }),
 }));

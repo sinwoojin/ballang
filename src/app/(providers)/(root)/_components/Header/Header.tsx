@@ -3,7 +3,7 @@
 import { logOut } from "@/api/api";
 import { useAuthStore } from "@/zustand/auth.store";
 import Link from "next/link";
-import React, { useState } from "react";
+import {} from "react";
 
 function Header() {
 	const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
@@ -24,7 +24,7 @@ function Header() {
 			{!isLoggedIn ? (
 				<div className="flex gap-x-4">
 					<Link href={"/sign-up"}>회원가입</Link>
-					로그인
+					<button>로그인</button>
 				</div>
 			) : (
 				<div className="flex gap-x-3">

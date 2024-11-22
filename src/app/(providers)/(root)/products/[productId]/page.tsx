@@ -1,10 +1,15 @@
-import { getCart, getProduct } from "@/api/api";
-import React from "react";
+import { getProduct } from "@/api/api";
+import AddToCartButton from "./_components/AddToCartButton";
 
-getCart();
+interface BallangProps {
+	params: {
+		productId: number;
+	};
+}
 
-async function Ballang({ params: { productId } }) {
-	const ballang = await getProduct(productId);
+async function Ballang({ params: { productId } }: BallangProps) {
+	const productID = Number(productId);
+	const ballang = await getProduct(productID);
 
 	return (
 		<section className="px-5 lg:px-8 py-6 lg:py-10 mx-auto max-w-screen-lg data-[full-width=true]:max-w-none flex grow w-full items-stretch justify-between">
@@ -37,9 +42,9 @@ async function Ballang({ params: { productId } }) {
 						잔여 재고
 					</span>
 					<p className="w-[70%]">{ballang.onlineStock}</p>
-					<button className="mx-auto border py-6 w-full border-blue-500 text-blue-500">
+					<AddToCartButton productId={productID}>
 						장바구니에 담기
-					</button>
+					</AddToCartButton>
 				</div>
 			</div>
 		</section>

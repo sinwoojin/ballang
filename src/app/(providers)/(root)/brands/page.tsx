@@ -1,10 +1,9 @@
-import { getBrands, getProducts } from "@/api/api";
-import React from "react";
-import { Ballang, Brand } from "../../../../schemas/list.schema";
+import { getBrands } from "@/api/api";
 import Link from "next/link";
-import BallangList from "@/app/_components/BallangList/BallangList";
+import { Brand } from "../../../../../schemas/list.schema";
+import BallangList from "../_components/BallangList/BallangList";
 
-async function Brands({
+async function BrandsPage({
 	searchParams,
 }: {
 	searchParams: { brandId: string | undefined };
@@ -40,4 +39,4 @@ async function Brands({
 	);
 }
 
-export default Brands;
+export default BrandsPage;
