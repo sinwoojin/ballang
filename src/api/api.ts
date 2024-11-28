@@ -8,6 +8,18 @@ export const ballangApi = axios.create({
 	withCredentials: true,
 });
 
+ballangApi.interceptors.response.use(
+	(response) => response,
+	(error) => {
+		// 공통 에러 처리 로직
+		console.error(
+			"Intercepted error:",
+			error.response?.data || error.message
+		);
+		return Promise.reject(error); // 요청 별로 에러를 처리하려면 reject 유지
+	}
+);
+
 export const getBrands = async () => {
 	const url = "/brands";
 	const response = await ballangApi.get<Response<Brand[]>>(url);
@@ -40,7 +52,7 @@ export const getProduct = async (id: number) => {
 	return ballang;
 };
 
-export const getProducts = async (brandId?: number) => {
+export const getProducts = async (brandId?: string) => {
 	if (brandId === undefined) {
 		const url = "/products";
 		const response = await ballangApi.get<Response<Product[]>>(url);

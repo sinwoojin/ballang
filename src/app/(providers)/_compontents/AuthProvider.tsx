@@ -10,7 +10,7 @@ function AuthProvider({ children }: PropsWithChildren) {
 
 	useEffect(() => {
 		refreshToken().then((isRefreshTokenSuccess) => {
-			if (isRefreshTokenSuccess) {
+			if (!isRefreshTokenSuccess) {
 				logIn();
 			} else {
 				logOut();

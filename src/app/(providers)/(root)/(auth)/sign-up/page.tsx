@@ -1,12 +1,14 @@
 "use client";
 
 import { useAuthStore } from "@/zustand/auth.store";
+import { useRouter } from "next/navigation";
 import { ComponentProps, useRef } from "react";
 
 function SignUpPage() {
 	const inputEmailRef = useRef<HTMLInputElement | null>(null);
 	const inputPasswordRef = useRef<HTMLInputElement | null>(null);
 	const passwordConfirmRef = useRef<HTMLInputElement | null>(null);
+	const router = useRouter();
 
 	const logIn = useAuthStore((state) => state.logIn);
 
@@ -21,7 +23,7 @@ function SignUpPage() {
 			return alert("비밀번호 일치하지 않음");
 
 		logIn();
-		return alert("축하합니다 회원가입에 성공하셨습니다");
+		return alert("축하합니다 회원가입에 성공하셨습니다"), router.push("/");
 	};
 	return (
 		<div className="px-5 lg:px-8 py-6 lg:py-10 mx-auto max-w-screen-lg data-[full-width=true]:max-w-none flex flex-col grow w-full items-stretch">
