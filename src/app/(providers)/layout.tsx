@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react";
 
 function ProvidersLayout({ children }: PropsWithChildren) {
-	return <>{children};</>;
+  return <>{children};</>;
 }
 
 export default ProvidersLayout;

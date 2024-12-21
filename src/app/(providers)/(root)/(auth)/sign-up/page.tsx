@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { ComponentProps, useRef } from "react";
 
 function SignUpPage() {
+	const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
 	const inputEmailRef = useRef<HTMLInputElement | null>(null);
 	const inputPasswordRef = useRef<HTMLInputElement | null>(null);
 	const passwordConfirmRef = useRef<HTMLInputElement | null>(null);
@@ -16,7 +18,10 @@ function SignUpPage() {
 		e.preventDefault();
 
 		const email = inputEmailRef.current?.value;
-		if (!email?.includes("@")) return alert("@ 포함하여 입력");
+		if (!email) return alert("이메일을 입력해주세요");
+		const emailCheck = emailRegex.test(email);
+		if (!emailCheck) return alert("이메일 양식을 맞춰주세요");
+
 		const password = inputPasswordRef.current?.value;
 		const passwordConfirm = passwordConfirmRef.current?.value;
 		if (password !== passwordConfirm)
